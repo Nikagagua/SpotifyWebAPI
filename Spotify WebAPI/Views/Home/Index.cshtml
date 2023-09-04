@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Spotify_WebAPI.Models.Release>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row">
+    @foreach (var release in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card-body border-0 shadow p-3 border-top rounded border-5 text-center">
+                        <img 
+                        src="@Html.DisplayFor(modelItem => release.ImageUrl)" 
+                        width="300" 
+                        height="300" 
+                        alt="Spotify trash image"
+                        class="card-img-top img-fluid rounded img-thumbnail">
+
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => release.Artists)</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => release.Name)</h6>
+                        <p class="card-text">@Html.DisplayFor(modelItem => release.Date)</p>
+
+                        <a href="@Html.DisplayFor(modelItem => release.Link)" target="_blank" class="btn btn-outline-danger bg-gradient border-0 form-control">
+                            <i class="bi bi-music-note-beamed"></i> Listen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+</div>
