@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Spotify_WebAPI.Models;
+using System;
+using DotNetEnv;
 
 namespace Spotify_WebAPI.Services
 {
@@ -22,6 +24,7 @@ namespace Spotify_WebAPI.Services
 
         public async Task<string> GetToken(string clientId, string clientSecret)
         {
+
             var request = new HttpRequestMessage(HttpMethod.Post, "https://accounts.spotify.com/api/token");
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}")));

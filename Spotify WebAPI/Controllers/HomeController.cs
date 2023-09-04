@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DotNetEnv;
+using Microsoft.AspNetCore.Mvc;
 using Spotify_WebAPI.Models;
 using Spotify_WebAPI.Services;
 using System.Diagnostics;
@@ -28,8 +29,13 @@ namespace Spotify_WebAPI.Controllers
 
         private async Task<IEnumerable<Release>> GetNewRelease()
         {
-            var clientId = _configuration["Spotify:ClientId"] ?? string.Empty;
-            var clientSecret = _configuration["Spotify:ClientSecret"] ?? string.Empty;
+            if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            {
+                Env.Load();
+            }
+
+            var clientId = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
+            var clientSecret = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_SECRET");
 
             try
             {
